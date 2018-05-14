@@ -7,48 +7,118 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Input from 'material-ui/Input';
 
-import {chats,messages} from '.mock-data';
+import { chats, messages } from './mock-data';
 
-import List, {ListItem,ListItemText } from 'material-ui/List';
-const drawerWidth = 320;
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import Button from 'material-ui/Button';
+import RestoreIcon from 'material-ui-icons/Restore';
+import ExploreIcon from 'material-ui-icons/Explore';
+import AddIcon from 'material-ui-icons/Add';
+import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+//---------------------------------
+import classnames from 'classnames'
+import titleInitials from './utils/title-initials'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-  },
-  appFrame: {
-    height: 430,
-    zIndex: 1,
-    overflow: 'hidden',
     position: 'relative',
     display: 'flex',
     width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
   },
   appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-  },
-  'appBar-left': {
-    marginLeft: drawerWidth,
-  },
-  'appBar-right': {
-    marginRight: drawerWidth,
+    position: 'fixed',
+    width: `calc(100% - 320px)`,
   },
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth,
+    height: '100%',
+    width: 320,
   },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+  },
+  chatsList: {
+    height: 'calc(100% - 56px)',
+    overflowY: 'scroll',
+  },
+  newChatButton: {
+    position: 'absolute',
+    left: 'auto',
+    right: theme.spacing.unit * 3,
+    bottom: theme.spacing.unit * 3 + 48, // + bottom navigation
+  },
+  chatLayout: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '64px',
+    height: '100%',
+    overflow: 'hidden',
+  },
+  messagesWrapper: {
+    overflowX: 'scroll',
+    height: '100%',
+    width: '100%',
+    paddingTop: theme.spacing.unit * 3,
+    paddingBottom: '120px',
+  },
+  messageInputWrapper: {
+    position: 'fixed',
+    left: 'auto',
+    right: 0,
+    bottom: 0,
+    width: `calc(100% - 400px)`,
     padding: theme.spacing.unit * 3,
   },
-  input: {
-    margin: theme.spacing.unit,
+  messageInput: {
+    padding: theme.spacing.unit * 2,
+  },
+  messageWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+  },
+  messageWrappperFromMe: {
+    justifyContent: 'flex-end',
+  },
+  message: {
+    maxWidth: '70%',
+    minWidth: '10%',
+    padding: theme.spacing.unit,
+    marginLeft: theme.spacing.unit * 2,
+  },
+  messageFromMe: {
+    marginRight: theme.spacing.unit * 2,
+    backgroundColor: '#e6dcff'
   },
 });
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.refMessagesWrapper = React.createRef();
+  }
+  componentDidMount() {
+    this.scrollDownHistory();
+  }
 
-class PermanentDrawer extends React.Component {
+  componentDidUpdate() {
+    this.scrollDownHistory();
+  }
+
+  scrollDownHistory() {
+    debugger;
+    const messagesWrapper = this.refMessagesWrapper.current;// this.refs.messagesWrapper;
+    if (messagesWrapper) {
+      messagesWrapper.scrollTop =messagesWrapper.scrollHeight;
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -57,7 +127,7 @@ class PermanentDrawer extends React.Component {
 
     return (
 
-      <div className={classes.appFrame}>
+      <div className={classes.root}>
         <AppBar
           position="absolute"
           className={classes.appBar}
@@ -74,24 +144,79 @@ class PermanentDrawer extends React.Component {
             paper: classes.drawerPaper,
           }}
         >
-        {/*   <div className={classes.toolbar} /> */}
-        <div className={classes.drawerHeader}>
-          <Input
-        placeholder="Search chats..."
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      /></div>
+          {/*   <div className={classes.toolbar} /> */}
+          <div className={classes.drawerHeader}>
+            <Input
+              placeholder="Search chats..."
+              className={classes.input}
+              inputProps={{
+                'aria-label': 'Description',
+              }}
+            /></div>
           <Divider />
-          <List className="classes.chatsList"></List>
-          <Divider />
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography>{'You think water moves fast? You should see ice.'}</Typography>
-        </main>
+          <List className={classes.chatsList}>
+            {chats.map((chat, index) => (
+              <ListItem key={index} button>
+                <Avatar>{titleInitials(chat.title)}</Avatar>
+                <ListItemText primary={chat.title} />
+              </ListItem>
+            ))}
 
+          </List>
+          <Button
+            variant="fab"
+            color="primary"
+            className={classes.newChatButton}
+          >
+            <AddIcon />
+          </Button>
+
+
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
+            <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
+          </BottomNavigation>
+         
+        </Drawer>
+
+        <main className={classes.chatLayout}  >
+          <div className={classes.messagesWrapper} ref={this.refMessagesWrapper} >
+            {messages && messages.map((message, index) => {
+              const isMessageFromMe = message.sender === 'me';
+
+              const userAvatar = (
+                <Avatar>
+                  {titleInitials(message.sender)}
+                </Avatar>
+              );
+
+              return (
+                // <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
+                <div key={index} className={classnames(
+                  classes.messageWrapper,
+                  isMessageFromMe && classes.messageWrappperFromMe)}>
+                  {!isMessageFromMe && userAvatar}
+                  <Paper className={classnames(
+                    classes.message,
+                    isMessageFromMe && classes.messageFromMe)}>
+                    <Typography variant="caption">
+                      {message.sender}
+                    </Typography>
+                    <Typography variant="body1">
+                      {message.content}
+                    </Typography>
+                  </Paper>
+                  {isMessageFromMe && userAvatar}
+                </div>
+              );
+            })}
+          </div>
+          <div className={classes.messageInputWrapper}>
+            <Paper className={classes.messageInput} elevation={6}>
+              <Input fullWidth placeholder="Type your message…"/>
+            </Paper>
+          </div>
+        </main>
       </div>
 
     );
@@ -100,4 +225,4 @@ class PermanentDrawer extends React.Component {
 
 
 
-export default withStyles(styles)(PermanentDrawer);
+export default withStyles(styles)(App);
