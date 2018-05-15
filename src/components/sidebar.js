@@ -17,7 +17,7 @@ const styles = theme => ({
     width: 320
   },
   drawerHeader: {
-   // position:"fixed",
+   //...theme.toolbar,
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing.unit * 3,
     paddingRight: theme.spacing.unit * 3
@@ -42,8 +42,9 @@ const Sidebar = ({ classes, chats }) =>
       <TextField fullWidth margin="normal" placeholder="Search chats..." />
     </div>
     <Divider />
+
     <ChatList chats={chats} />
-    <AddChatButton/>
+  {/*   <AddChatButton/> */}
 {/*     <Button variant="fab" color="primary" className={classes.newChatButton}>
       <AddIcon />
     </Button> */}

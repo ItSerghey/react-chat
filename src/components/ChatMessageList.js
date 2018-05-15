@@ -5,7 +5,7 @@ import ChatMessage from "./ChatMessage";
 
 const styles = theme => ({
   messagesWrapper: {
-    overflow: "auto",
+    overflowY: "scroll",
     height: "100%",
     width: "100%",
     paddingTop: theme.spacing.unit * 3,
