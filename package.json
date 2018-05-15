@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
+
     "@material-ui/core": "^1.0.0-rc.0",
     "@material-ui/icons": "^1.0.0-rc.0",
     "babel-core": "^6.26.3",
@@ -16,24 +16,17 @@
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
     "typeface-roboto": "0.0.54"
-=======
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
->>>>>>> master
+
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-<<<<<<< HEAD
+
   },
   "devDependencies": {
     "typescript-snapshots-plugin": "^1.2.0"
   }
 }
-=======
-  }
-}
->>>>>>> master
+
