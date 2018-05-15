@@ -103,5 +103,6 @@ prettier-vscode: https://github.com/prettier/prettier-vscode
 vscode-svgviewer: https://github.com/cssho/vscode-svgviewer
 vscode-icons: https://github.com/vscode-icons/vscode-icons
 typescript-snapshots-plugin: https://github.com/asvetliakov/typescript-snapshots-plugin
+test
 
 */
