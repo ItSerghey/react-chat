@@ -44,10 +44,7 @@ const Sidebar = ({ classes, chats }) =>
     <Divider />
 
     <ChatList chats={chats} />
-  {/*   <AddChatButton/> */}
-{/*     <Button variant="fab" color="primary" className={classes.newChatButton}>
-      <AddIcon />
-    </Button> */}
+   <AddChatButton/> 
 
     <BottomNavigation showLabels>
       <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
