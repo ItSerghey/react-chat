@@ -9,7 +9,7 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 400px)`,
+    width: `calc(100% - 304px)`,
     padding: theme.spacing.unit * 3
   },
   messageInput: {
