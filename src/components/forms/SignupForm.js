@@ -37,34 +37,16 @@ class SignupForm extends React.Component {
     return isValid;
   }
 
-  handleUsernameInputChange = (event) => {
+  handleInputChange = (event)=>{
+  
     event.persist();
-    this.setState((prevState) => ({
-      username: {
-        ...prevState.username,
-        value: event.target.value,
+    const{name,value}=event.target;
+    this.setState((prevState)=>({
+      [name]: {
+        ...prevState[name],
+        value,
       },
-    }));
-  }
-
-  handlePasswordInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
-        value: event.target.value,
-      },
-    }));
-  }
-
-  handleRepeatedPasswordInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      repeatedPassword: {
-        ...prevState.repeatedPassword,
-        value: event.target.value,
-      },
-    }));
+    }))
   }
 
   handleSubmit = (event) => {
@@ -78,7 +60,21 @@ class SignupForm extends React.Component {
 
     console.log('Sign up:', username.value, password.value);
 
-    // ...
+    fetch('http://localhost:8000/v1/signup', {
+      method: "POST",
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value,
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .catch(reason => console.error(reason));
+  
   }
 
   render() {
@@ -95,8 +91,9 @@ class SignupForm extends React.Component {
           type="text"
           margin="normal"
           autoComplete="username"
+          name="username"
           value={username.value}
-          onChange={this.handleUsernameInputChange}
+          onChange={this.handleInputChange}
           error={!username.isValid}
         />
         <TextField
@@ -107,8 +104,9 @@ class SignupForm extends React.Component {
           type="password"
           margin="normal"
           autoComplete="new-password"
+          name="password"
           value={password.value}
-          onChange={this.handlePasswordInputChange}
+          onChange={this.handleInputChange}
           error={!password.isValid}
         />
          <TextField
@@ -119,8 +117,9 @@ class SignupForm extends React.Component {
           type="password"
           margin="normal"
           autoComplete="new-password"
+          name="repeatedPassword"
           value={repeatedPassword.value}
-          onChange={this.handleRepeatedPasswordInputChange}
+          onChange={this.handleInputChange}
           error={!repeatedPassword.isValid}
         />
         <Button

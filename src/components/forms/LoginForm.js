@@ -21,24 +21,15 @@ class LoginForm extends React.Component {
     },
   }
 
-  handleUsernameInputChange = (event) => {
+  handleInputChange =(event) =>{
     event.persist();
-    this.setState((prevState) => ({
-      username: {
-        ...prevState.username,
-        value: event.target.value,
-      },
-    }));
-  }
+    const {name, value} = event.target;
 
-  handlePasswordInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
-        value: event.target.value,
-      },
-    }));
+    this.setState((prevState)=>(
+      {
+      [name]:{...prevState[name],value},
+    }))
+
   }
 
   handleSubmit = (event) => {
@@ -65,8 +56,9 @@ class LoginForm extends React.Component {
           type="text"
           margin="normal"
           autoComplete="username"
+          name="username"
           value={username.value}
-          onChange={this.handleUsernameInputChange}
+          onChange={this.handleInputChange}
           error={!username.isValid}
         />
         <TextField
@@ -77,8 +69,9 @@ class LoginForm extends React.Component {
           type="password"
           margin="normal"
           autoComplete="current-password"
+          name="password"
           value={password.value}
-          onChange={this.handlePasswordInputChange}
+          onChange={this.handleInputChange}
           error={!password.isValid}
         />
         <Button
