@@ -1,7 +1,7 @@
 import {
   SIGNUP_REQUEST, SIGNUP_FAILURE, SIGNUP_SUCCESS,
   LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-  LOGOUT_REQUEST, LOGOUT_FAILURE, LOGOUT_SUCCESS
+  LOGOUT_REQUEST, 
 } from '../constants'
 
 
@@ -79,7 +79,7 @@ export function login(username, password) {
         }
 
         localStorage.setItem('token',json.token);
-        
+
         dispatch({
           type:LOGIN_SUCCESS, 
           payload:json})

@@ -1,7 +1,7 @@
 import {
-  SIGNUP_REQUEST, SIGNUP_FAILURE, SIGNUP_SUCCESS,
-  LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-  LOGOUT_REQUEST, LOGOUT_FAILURE, LOGOUT_SUCCESS
+   SIGNUP_FAILURE, SIGNUP_SUCCESS,
+   LOGIN_FAILURE, LOGIN_SUCCESS,
+   LOGOUT_SUCCESS
 } from '../constants'
 
 const token =localStorage.getItem('token');
@@ -34,10 +34,6 @@ export default function auth(state = InitialState, action) {
         token:'',
       };
 
-/*     case SIGNUP_REQUEST:
-    case LOGIN_REQUEST:
-    case LOGOUT_REQUES */
-      return state;
     default:
       return state;
   }
