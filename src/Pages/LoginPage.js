@@ -6,8 +6,9 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
- import LoginForm from '../components/forms/LoginForm';
-import SignupForm from '../components/forms/SignupForm'; 
+import LoginForm from '../components/forms/LoginForm';
+import SignupForm from '../components/forms/SignupForm';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   paper: {
@@ -21,21 +22,24 @@ const styles = theme => ({
 
 class LoginPage extends React.Component {
 
-  state={
-    activeTab:0,
+  state = {
+    activeTab: 0,
   }
 
   handleChange = (event, value) => {
-    this.setState({ activeTab : value });
+    this.setState({ activeTab: value });
   };
 
-  render(){
-    const { classes } = this.props;
+  render() {
+    const { classes, signup, login, isAuthenticated } = this.props;
     const { activeTab } = this.state;
 
-    return(
+    if (isAuthenticated) {
+      return (<Redirect to="/chat" />);
+    }
+    return (
       <React.Fragment>
-     <AppBar>
+        <AppBar>
           <Toolbar>
             <Typography variant="title" color="inherit" style={{ flex: 1 }}>
               DogeCodes React Chat
@@ -44,26 +48,26 @@ class LoginPage extends React.Component {
         </AppBar>
 
         <Grid container justify="center">
-        <Grid item>
-          <Paper className={classes.paper}>
-            <AppBar position="static" color="default">
-              <Tabs value={activeTab}
-                onChange={this.handleChange }
-                fullWidth
-              >
-                <Tab label="Login" />
-                <Tab label="Sign Up" />
-              </Tabs>
-            </AppBar>
-            <div className={classes.tabContent}>
-              {activeTab === 0 && <LoginForm />}
-              {activeTab === 1 && <SignupForm />} 
-            </div>
-          </Paper>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <AppBar position="static" color="default">
+                <Tabs value={activeTab}
+                  onChange={this.handleChange}
+                  fullWidth
+                >
+                  <Tab label="Login" />
+                  <Tab label="Sign Up" />
+                </Tabs>
+              </AppBar>
+              <div className={classes.tabContent}>
+                {activeTab === 0 && <LoginForm onSubmit={login} />}
+                {activeTab === 1 && <SignupForm onSubmit={signup} />}
+              </div>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
       </React.Fragment>
- 
+
     )
   }
 }

@@ -37,9 +37,9 @@ class LoginForm extends React.Component {
     
     const { username, password } = this.state;
 
-    console.log('Login:', username.value, password.value);
+//    console.log('Login:', username.value, password.value);
 
-    // ...
+    this.props.onSubmit( username.value, password.value);
   }
 
   render() {
