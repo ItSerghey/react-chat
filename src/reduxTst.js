@@ -25,6 +25,7 @@ const store = createStore(counter);
 store.subscribe(()=>{
   console.log(store.getState())
 })
+
 store.dispatch(increment);
 store.dispatch(increment);
 store.dispatch(increment);
