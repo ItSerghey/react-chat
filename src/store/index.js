@@ -11,10 +11,17 @@ export default function configureStore(){
       applyMiddleware(thunkMiddleware)
     )
   }else{
-    return createStore(
+    const store=  createStore(
       rootReducer,
       applyMiddleware(thunkMiddleware,loggerMiddleware)
     )
+
+    if (module.hot) {
+      module.hot.accept('../reducers', () => {
+        store.replaceReducer(rootReducer)
+      })}
+
+      return store;
   }
   
 }
