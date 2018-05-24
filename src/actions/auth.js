@@ -1,14 +1,10 @@
-import {
-  SIGNUP_REQUEST, SIGNUP_FAILURE, SIGNUP_SUCCESS,
-  LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-  LOGOUT_REQUEST, 
-} from '../constants'
+import * as types from '../constants';
 
 
 export function signup(username, password) {
   return (dispatch) => {
     dispatch({
-      type: SIGNUP_REQUEST,
+      type: types.SIGNUP_REQUEST,
     });
 
     return fetch('http://localhost:8000/v1/signup', {
@@ -39,19 +35,19 @@ export function signup(username, password) {
         localStorage.setItem('token',json.token);
 
         dispatch({
-          type:SIGNUP_SUCCESS, 
+          type:types.SIGNUP_SUCCESS, 
           payload:json
         })
       }
           )
-      .catch(reason =>  dispatch({type:SIGNUP_FAILURE, payload:reason}) );
+      .catch(reason =>  dispatch({type:types.SIGNUP_FAILURE, payload:reason}) );
   };
 }
 
 export function login(username, password) {
   return (dispatch) => {
     dispatch({
-      type: LOGIN_REQUEST,
+      type: types.LOGIN_REQUEST,
       
     });
     return fetch('http://localhost:8000/v1/login', {
@@ -81,17 +77,55 @@ export function login(username, password) {
         localStorage.setItem('token',json.token);
 
         dispatch({
-          type:LOGIN_SUCCESS, 
+          type:types.LOGIN_SUCCESS, 
           payload:json})
         })
-      .catch(reason =>  dispatch({type:LOGIN_FAILURE, payload:reason}) );
+      .catch(reason =>  dispatch({type:types.LOGIN_FAILURE, payload:reason}) );
   };
 }
 
 export function logout() {
   return (dispatch) => {
     dispatch({
-      type: LOGOUT_REQUEST,
+      type: types.LOGOUT_REQUEST,
     })
   };
+}
+
+
+export function recieveAuth(){
+  return (dispatch,getState)=>{
+    const{token}=getState().auth;
+
+    if(!token){
+      dispatch({
+        type: types.RECIEVE_AUTH_FAILURE,
+      })
+    }
+
+    return fetch('http://localhost:8000/v1/users/me', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.success) {
+          return json;
+        }
+
+        throw new Error(json.message);
+      })
+      .then(json => dispatch({
+        type: types.RECIEVE_AUTH_SUCCESS,
+        payload: json,
+      }))
+      .catch(reason => dispatch({
+        type: types.RECIEVE_AUTH_FAILURE,
+        payload: reason,
+      }));
+      
+  }
 }

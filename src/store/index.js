@@ -1,4 +1,4 @@
-import {createStore,applyMiddleware} from 'redux';
+import {createStore, applyMiddleware ,compose} from 'redux';
 import rootReducer from '../reducers';
 import thunkMiddleware from 'redux-thunk';
 import loggerMiddleware from 'redux-logger';
@@ -11,9 +11,16 @@ export default function configureStore(){
       applyMiddleware(thunkMiddleware)
     )
   }else{
+
+    const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({serialize:true}) : compose;
+
     const store=  createStore(
       rootReducer,
-      applyMiddleware(thunkMiddleware,loggerMiddleware)
+      composeEnhancers(
+        applyMiddleware(thunkMiddleware,loggerMiddleware)
+      )
+     
     )
 
     if (module.hot) {
