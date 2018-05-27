@@ -1,19 +1,24 @@
 import React from 'react';
-
-import { chats, messages } from "../mock-data";
+import {  messages } from "../mock-data";
 import Sidebar from "../components/sidebar";
 import ChatHeader from "../components/ChatHeader";
 import Chat from "../components/Chat";
-import { Redirect } from 'react-router-dom';
+
 
 class ChatPage extends React.Component{
+  componentDidMount(){
+    const {fetchAllChats, fetchMyChats} = this.props;
+
+    Promise.all([
+      fetchAllChats(),
+      fetchMyChats(),
+    ])
+  }
 
   render(){
-    const { isAuthenticated } = this.props;
 
-    if (!isAuthenticated) {
-      return (<Redirect to="/" />);
-    }
+    const {chats} = this.props;
+    console.log(chats);
     return(
       <React.Fragment>
       <ChatHeader />

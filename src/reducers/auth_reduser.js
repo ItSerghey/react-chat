@@ -1,4 +1,4 @@
-import * as types from '../constants';
+import * as types from '../constants/auth_const';
 
 const token =localStorage.getItem('token');
 
