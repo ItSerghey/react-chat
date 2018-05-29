@@ -86,30 +86,27 @@ export function setActiveChat(chatId) {
 export function createChat(title) {
 
   return (dispatch,getState) => {
-    const { token } = getState().auth;
-    debugger;
+    const state = getState();
+    const { token } = state.auth;
+
+
     dispatch({
       type: types.CREATE_CHAT_REQUEST,
+      payload: { title },
     });
 
     return callApi('/chats',token, { method: "POST"},{
-      "data": {
-        "title": title      }
+      data: {title}
       })     
-      .then(json=>{
-
-        if(!json.token){
-          throw new Error('Token has not been provided.');
-        }
-
-        localStorage.setItem('token',json.token);
-
+      .then(({chat})=>{
         dispatch({
           type:types.CREATE_CHAT_SUCCESS, 
-          payload:json
-        })
-      }
-          )
+          payload:{chat},
+        });
+        dispatch(redirect(`/chat/${chat._id}`));
+
+        return chat;
+      })
       .catch(reason =>  dispatch({type:types.CREATE_CHAT_FAILURE, payload:reason}) );
   };
 }

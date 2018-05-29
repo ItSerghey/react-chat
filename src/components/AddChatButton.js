@@ -83,7 +83,7 @@ class AddChatButton extends React.Component {
   render() {
     const { classes, createChat } = this.props;
     const { chatName } = this.state;
-    console.log(createChat);
+
     return (
       <div>
         <Button
