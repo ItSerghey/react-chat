@@ -17,12 +17,12 @@ class ChatPage extends React.Component{
 
   render(){
 
-    const {chats} = this.props;
+    const {chats,createChat} = this.props;
     console.log(chats);
     return(
       <React.Fragment>
       <ChatHeader />
-      <Sidebar chats={chats} />
+      <Sidebar createChat={createChat} chats={chats} />
       <Chat messages={messages}/>
     </React.Fragment>
     )

@@ -6,7 +6,7 @@ activeId:'',
 allIds:[],
 myIds:[],
 byIds:{},
-
+createChat:[],
 };
 
 const activeId = (state= InitialState.activeId,action)=>{
@@ -22,6 +22,17 @@ const activeId = (state= InitialState.activeId,action)=>{
     return state;
   }
 }
+
+const createChat =(state= InitialState.activeId,action)=>{
+  switch (action.type) {
+    case types.CREATE_CHAT_SUCCESS:
+      return action.payload.chats.map(getChatId);
+  
+    default:
+      return state;
+}
+}
+
 const allIds = (state= InitialState.allIds,action)=>{
   switch (action.type) {
     case types.FETCH_ALL_CHATS_SUCCESS:
@@ -79,6 +90,7 @@ export default combineReducers({
   allIds,
   myIds,
   byIds,
+  createChat,
 })
 
 export const getChatId = (chat) => chat._id;

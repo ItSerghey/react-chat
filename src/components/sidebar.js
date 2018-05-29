@@ -26,7 +26,10 @@ const styles = theme => ({
   }
 });
 
-const Sidebar = ({ classes, chats }) =>
+class Sidebar  extends React.Component {
+  render(){
+    const { classes, chats, createChat } = this.props;
+    return(
   <Drawer
     variant="permanent"
     classes={{
@@ -35,12 +38,12 @@ const Sidebar = ({ classes, chats }) =>
   >
     <Search />
     <ChatList chats={chats} />
-    <AddChatButton />
+    <AddChatButton onClick={createChat} />
 
     <BottomNavigation showLabels>
       <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
       <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
     </BottomNavigation>
-  </Drawer>;
-
+  </Drawer>
+     );}}
 export default withStyles(styles)(Sidebar);
