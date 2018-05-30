@@ -28,6 +28,8 @@ const allIds = (state= InitialState.allIds,action)=>{
   switch (action.type) {
     case types.FETCH_ALL_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
+    case types.CREATE_CHAT_SUCCESS:
+      return [...state, getChatId(action.payload.chat)];
     case types.JOIN_CHAT_SUCCESS:
       // ...
     case types.LEAVE_CHAT_SUCCESS:
@@ -55,6 +57,11 @@ const myIds = (state= InitialState.myIds,action)=>{
 }
 const byIds = (state= InitialState.byIds,action)=>{
   switch (action.type) {
+    case types.CREATE_CHAT_SUCCESS:
+      return {
+        ...state,
+        [getChatId(action.payload.chat)]: action.payload.chat,
+      };
     case types.FETCH_ALL_CHATS_SUCCESS:
     case types.FETCH_MY_CHATS_SUCCESS:
       return {

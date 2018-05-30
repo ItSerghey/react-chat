@@ -69,7 +69,6 @@ class AddChatButton extends React.Component {
     }
 
     this.props.onClick(chatName.value);
-    //this.setState({ open: false });
 
     this.setState({
       open: false,
@@ -81,7 +80,7 @@ class AddChatButton extends React.Component {
   };
 
   render() {
-    const { classes, createChat } = this.props;
+    const { classes } = this.props;
     const { chatName } = this.state;
 
     return (
@@ -100,13 +99,13 @@ class AddChatButton extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">ДОБАВИТЬ ЧАТ</DialogTitle>
+          <DialogTitle id="form-dialog-title">CREATE CHATE</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
               margin="dense"
               id="chatName"
-              label="укажите название чата"
+              label="add name of chat"
               type="text"
               value={chatName.value}
               name="chatName"
@@ -117,10 +116,10 @@ class AddChatButton extends React.Component {
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              отмена
+              CANCEL
             </Button>
             <Button onClick={this.handleAddChat} color="primary">
-              создать
+              ADD
             </Button>
           </DialogActions>
         </Dialog>
