@@ -35,7 +35,6 @@ class ChatPage extends React.Component {
       chats, activeUser, logout, editUser,
       createChat, joinChat, leaveChat, deleteChat, sendMessage,
       messages } = this.props;
-    console.log(chats);
     return (
       <React.Fragment>
         <ChatHeader

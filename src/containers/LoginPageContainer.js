@@ -9,8 +9,6 @@ isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-/*   signup:(username,password)=>dispatch(signup(username,password)),
-  login:(username,password)=>dispatch(login(username,password)) */
   signup,
   login,
 }, dispatch);

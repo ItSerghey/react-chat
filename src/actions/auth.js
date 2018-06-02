@@ -8,25 +8,25 @@ export function signup(username, password) {
       type: types.SIGNUP_REQUEST,
     });
 
-    return callApi('/signup',undefined, { method: "POST"},{
-        username: username,
-        password: password,
-      })     
-      .then(json=>{
+    return callApi('/signup', undefined, { method: "POST" }, {
+      username: username,
+      password: password,
+    })
+      .then(json => {
 
-        if(!json.token){
+        if (!json.token) {
           throw new Error('Token has not been provided.');
         }
 
-        localStorage.setItem('token',json.token);
+        localStorage.setItem('token', json.token);
 
         dispatch({
-          type:types.SIGNUP_SUCCESS, 
-          payload:json
+          type: types.SIGNUP_SUCCESS,
+          payload: json
         })
       }
-          )
-      .catch(reason =>  dispatch({type:types.SIGNUP_FAILURE, payload:reason}) );
+      )
+      .catch(reason => dispatch({ type: types.SIGNUP_FAILURE, payload: reason }));
   };
 }
 
@@ -34,25 +34,26 @@ export function login(username, password) {
   return (dispatch) => {
     dispatch({
       type: types.LOGIN_REQUEST,
-      
+
     });
-    return callApi('/login',undefined, {method: "POST"},
-     {
+    return callApi('/login', undefined, { method: "POST" },
+      {
         username: username,
         password: password,
       })
       .then(json => {
-        if(!json.token){
+        if (!json.token) {
           throw new Error('Token has not been provided.');
         }
 
-        localStorage.setItem('token',json.token);
+        localStorage.setItem('token', json.token);
 
         dispatch({
-          type:types.LOGIN_SUCCESS, 
-          payload:json})
+          type: types.LOGIN_SUCCESS,
+          payload: json
         })
-      .catch(reason =>  dispatch({type:types.LOGIN_FAILURE, payload:reason}) );
+      })
+      .catch(reason => dispatch({ type: types.LOGIN_FAILURE, payload: reason }));
   };
 }
 
@@ -79,17 +80,17 @@ export function logout() {
 }
 
 
-export function recieveAuth(){
-  return (dispatch,getState)=>{
-    const{token}=getState().auth;
+export function recieveAuth() {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
 
-    if(!token){
+    if (!token) {
       dispatch({
         type: types.RECIEVE_AUTH_FAILURE,
       })
     }
 
-    return callApi('/users/me', token,)
+    return callApi('/users/me', token, )
       .then(json => dispatch({
         type: types.RECIEVE_AUTH_SUCCESS,
         payload: json,
@@ -98,6 +99,6 @@ export function recieveAuth(){
         type: types.RECIEVE_AUTH_FAILURE,
         payload: reason,
       }));
-      
+
   }
 }
