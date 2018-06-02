@@ -1,8 +1,7 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
-
+import Typography from 'material-ui/Typography';
 import List from "material-ui/List";
-
 import ChatListItem from "./ChatListItem";
 
 const styles = theme => ({
@@ -12,10 +11,21 @@ const styles = theme => ({
   }
 });
 
-const ChatList = ({ classes, chats }) =>
+const ChatList = ({ classes, chats,activeChat }) =>
   <List className={classes.chatsList}>
-    {chats.map((chat, index) =>
-     <ChatListItem item={chat} key={index} />
+      {chats && chats.length ? (
+      chats.map((chat) => (
+        <ChatListItem
+          key={chat._id}
+          active={activeChat && activeChat._id === chat._id}
+          chatId={chat._id}
+          {...chat}
+        />
+      ))
+    ) : (
+      <Typography variant="subheading" className={classes.noChats}>
+        There is no chats yet...
+      </Typography>
     )}
   </List>;
 

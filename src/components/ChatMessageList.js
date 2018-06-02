@@ -1,24 +1,24 @@
 import React from "react";
 import { withStyles } from "material-ui/styles";
-
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
 import ChatMessage from "./ChatMessageItem";
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
   messagesWrapper: {
-    overflowY: "scroll",
-    height: "100%",
-    width: "100%",
+    overflowY: 'scroll',
+    height: '100%',
+    width: '100%',
     paddingTop: theme.spacing.unit * 3,
-    paddingBottom: "120px"
+    paddingBottom: '120px',
+  },
+  paper: {
+    padding: theme.spacing.unit * 3
   }
 });
 
 class ChatMessageList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.refMessagesWrapper = React.createRef();
-  }
-
   componentDidMount() {
     this.scrollDownHistory();
   }
@@ -28,24 +28,48 @@ class ChatMessageList extends React.Component {
   }
 
   scrollDownHistory() {
-    const messagesWrapper = this.refMessagesWrapper.current; // this.refs.messagesWrapper;
+    const messagesWrapper = this.refs.messagesWrapper;
     if (messagesWrapper) {
       messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
     }
   }
 
   render() {
-    const { classes, messages } = this.props;
+    const { classes, messages, match, activeUser } = this.props;
 
-    return (
-      <div className={classes.messagesWrapper} ref={this.refMessagesWrapper}>
-        {messages &&
-          messages.map((message, index) =>
-            <ChatMessage key={index} {...message} />
-          )}
+    // If there's no active chat, then show a tip
+    if (!match.params.chatId) {
+      return (
+        <Paper className={classes.paper}>
+          <Typography variant="display1" gutterBottom>
+            Start messaging…
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Use <strong>Global</strong> to explore communities around here.
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Use <strong>Recents</strong> to see your recent conversations.
+          </Typography>
+        </Paper>
+      );
+    }
+
+    return messages && messages.length ? (
+      <div className={classes.messagesWrapper} ref="messagesWrapper">
+        {messages.map((message, index) => (
+          <ChatMessage
+            key={index}
+            activeUser={activeUser}
+            {...message}
+          />
+        ))}
       </div>
+    ) : (
+      <Typography variant="display1">
+        There is no messages yet...
+      </Typography>
     );
   }
 }
 
-export default withStyles(styles)(ChatMessageList);
+export default withRouter(withStyles(styles)(ChatMessageList));

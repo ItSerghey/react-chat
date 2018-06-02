@@ -27,7 +27,7 @@ const App = ({ classes }) => (
       <div className={classes.root}>
         <Switch>
           <Route exact path="/(login)?" component={LoginPage} />
-          <PrivateRoute path="/chat" component={ChatPage} />
+          <PrivateRoute path="/chat/:chatId?" component={ChatPage} />
           <Redirect to="/" />
         </Switch>
       </div>
