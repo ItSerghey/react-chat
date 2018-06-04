@@ -1,12 +1,13 @@
 import React from "react";
 import { withStyles } from 'material-ui/styles';//changed path
-
+import PrivateRoute from '../containers/PrivateRoute';
 import { Provider } from 'react-redux';
 import configureStore from '../store';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import {Router, Route, Switch, Redirect } from 'react-router-dom'
 import ChatPage from '../containers/ChatPageContainer';
 import LoginPage from '../containers/LoginPageContainer';
+import history from '../utils/history';
 
 const styles = theme => ({
   root: {
@@ -22,11 +23,11 @@ const store = configureStore();
 
 const App = ({ classes }) => (
   <Provider store={store} >
-    <Router>
+    <Router history={history}>
       <div className={classes.root}>
         <Switch>
           <Route exact path="/(login)?" component={LoginPage} />
-          <Route path="/chat" component={ChatPage} />
+          <PrivateRoute path="/chat/:chatId?" component={ChatPage} />
           <Redirect to="/" />
         </Switch>
       </div>
