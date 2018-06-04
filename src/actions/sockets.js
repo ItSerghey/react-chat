@@ -50,7 +50,7 @@ export function socketsConnect() {
     socket.on('new-chat', ({ chat }) => {
       dispatch({
         type: types.RECIEVE_NEW_CHAT,
-        payload: chat,
+        payload: {chat},
       });
     });
 
@@ -59,7 +59,7 @@ export function socketsConnect() {
 
       dispatch({
         type: types.RECIEVE_DELETED_CHAT,
-        payload: chat,
+        payload: {chat},
       });
 
       if (activeId === chat._id) {
