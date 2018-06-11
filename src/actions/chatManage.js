@@ -102,8 +102,8 @@ export function setActiveChat(chatId) {
         }
 
         dispatch({
-          type:types.SET_ACTIVE_CHAT,
-          payload:data,
+          type: types.SET_ACTIVE_CHAT,
+          payload: data,
         })
 
         dispatch(redirect(`/chat/${data.chat._id}`));
