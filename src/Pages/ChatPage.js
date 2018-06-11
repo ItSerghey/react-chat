@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from "../components/sidebar";
 import ChatHeader from "../components/ChatHeader";
 import Chat from "../components/Chat";
-
+import ErrorMessage from '../components/ErrorMessage';
 
 class ChatPage extends React.Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class ChatPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { match: { params }, setActiveChat, unmountChat, mountChat  } = this.props;
+    const { match: { params }, setActiveChat, unmountChat, mountChat } = this.props;
     const { params: nextParams } = nextProps.match;
 
     // If we change route, then fetch messages from chat by chatID
@@ -41,8 +41,8 @@ class ChatPage extends React.Component {
 
     const {
       chats, activeUser, logout, editUser,
-      createChat, joinChat, leaveChat, deleteChat, sendMessage,
-      messages } = this.props;
+      createChat, joinChat, leaveChat, deleteChat, 
+      sendMessage,error,messages } = this.props;
     return (
       <React.Fragment>
         <ChatHeader
@@ -63,6 +63,7 @@ class ChatPage extends React.Component {
           sendMessage={sendMessage}
           joinChat={joinChat}
         />
+        <ErrorMessage error={error} />
       </React.Fragment>
     )
   }
