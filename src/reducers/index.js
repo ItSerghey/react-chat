@@ -2,11 +2,13 @@ import {combineReducers} from 'redux'
 import auth from './auth_reduser';
 import chats from './chats_reduser';
 import messages from './messages_reduser';
+import services from './services_reduser';
 
 export default combineReducers({
   auth,
   chats,
   messages,
+  services,
 });
 
 

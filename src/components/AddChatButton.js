@@ -80,12 +80,13 @@ class AddChatButton extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, disabled } = this.props;
     const { chatName } = this.state;
 
     return (
       <div>
         <Button
+          disabled={disabled}
           onClick={this.handleClickOpen}
           variant="fab"
           color="primary"

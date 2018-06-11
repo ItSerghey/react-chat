@@ -9,6 +9,7 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import LoginForm from '../components/forms/LoginForm';
 import SignupForm from '../components/forms/SignupForm';
 import { Redirect } from 'react-router-dom';
+import ErrorMessage from '../components/ErrorMessage';
 
 const styles = theme => ({
   paper: {
@@ -31,7 +32,7 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { classes, signup, login, isAuthenticated } = this.props;
+    const { classes, signup, login, isAuthenticated,error } = this.props;
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
@@ -42,7 +43,7 @@ class LoginPage extends React.Component {
         <AppBar>
           <Toolbar>
             <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-              DogeCodes React Chat
+             YourCHAT
             </Typography>
           </Toolbar>
         </AppBar>
@@ -66,6 +67,7 @@ class LoginPage extends React.Component {
             </Paper>
           </Grid>
         </Grid>
+        <ErrorMessage error={error} />
       </React.Fragment>
 
     )

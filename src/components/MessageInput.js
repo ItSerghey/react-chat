@@ -39,13 +39,14 @@ class MessageInput extends React.Component {
   }
 
   render() {
-    const { classes, showJoinButton, onJoinButtonClick } = this.props;
+    const { classes, showJoinButton, onJoinButtonClick, disabled } = this.props;
 
     return (
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>
           {showJoinButton ? (
             <Button
+              disabled={disabled}
               fullWidth
               variant="raised"
               color="primary"
@@ -54,14 +55,15 @@ class MessageInput extends React.Component {
               Join
             </Button>
           ) : (
-            <Input
-              fullWidth
-              placeholder="Type your message…"
-              value={this.state.value}
-              onChange={this.handleValueChange}
-              onKeyPress={this.handleKeyPress}
-            />
-          )}
+              <Input
+                disabled={disabled}
+                fullWidth
+                placeholder="Type your message…"
+                value={this.state.value}
+                onChange={this.handleValueChange}
+                onKeyPress={this.handleKeyPress}
+              />
+            )}
         </Paper>
       </div>
     );
