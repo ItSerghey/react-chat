@@ -63,7 +63,7 @@ class Sidebar extends React.Component {
 
   render() {
 
-    const { classes, chats, createChat } = this.props;
+    const { classes, chats, createChat, isConnected } = this.props;
     const { activeTab, searchValue } = this.state;
     return (
       <Drawer
@@ -73,18 +73,19 @@ class Sidebar extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <TextField  
+          <TextField
             fullWidth
             margin="normal"
             placeholder="Search chats..."
             value={searchValue}
-            onChange={this.handleSearchChange}/>
+            onChange={this.handleSearchChange} />
         </div>
         <Divider />
         <ChatList
+          disabled={!isConnected}
           chats={this.filterChats(activeTab === 0 ? chats.my : chats.all)}
           activeChat={chats.active} />
-        <AddChatButton onClick={createChat} />
+        <AddChatButton onClick={createChat} disabled={!isConnected} />
 
         <BottomNavigation
           value={activeTab}

@@ -21,6 +21,7 @@ const intialState = {
     auth: null,
     chat: null,
   },
+  isConnected: false,
 }
 
 
@@ -103,17 +104,17 @@ export const errors = (state = intialState.errors, action) => {
     case types.SIGNUP_FAILURE:
     case types.LOGIN_FAILURE:
     case types.LOGOUT_FAILURE:
-    // Used for internal needs
-    // case types.RECIEVE_AUTH_FAILURE:
+      // Used for internal needs
+      // case types.RECIEVE_AUTH_FAILURE:
       return { ...state, auth: action.payload };
 
     case types.SIGNUP_SUCCESS:
     case types.LOGIN_SUCCESS:
     case types.LOGOUT_SUCCESS:
-    // Used for internal needs
-    // case types.RECIEVE_AUTH_SUCCESS:
-    return { ...state, auth: null };
-    
+      // Used for internal needs
+      // case types.RECIEVE_AUTH_SUCCESS:
+      return { ...state, auth: null };
+
     case types.FETCH_ALL_CHATS_FAILURE:
     case types.FETCH_MY_CHATS_FAILURE:
     case types.FETCH_CHATINFO_FAILURE:
@@ -139,7 +140,20 @@ export const errors = (state = intialState.errors, action) => {
   }
 }
 
+export const isConnected = (state = intialState.isConnected, action) => {
+  switch (action.type) {
+    case types.SOCKETS_CONNECTION_MISSING:
+    case types.SOCKETS_CONNECTION_FAILURE:
+      return false;
+    case types.SOCKETS_CONNECTION_SUCCESS:
+      return true;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   isFetching,
   errors,
+  isConnected,
 });
