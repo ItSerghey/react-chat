@@ -9,17 +9,16 @@ export function signup(username, password) {
     if (isFetching.signup) {
       return Promise.resolve();
     }
-    
+
     dispatch({
       type: types.SIGNUP_REQUEST,
     });
 
-    return callApi('/signup', undefined, { method: "POST" }, {
-      username: username,
-      password: password,
+    return callApi('/signup', undefined, { method: 'POST' }, {
+      username,
+      password,
     })
-      .then(json => {
-
+      .then((json) => {
         if (!json.token) {
           throw new Error('Token has not been provided.');
         }
@@ -28,16 +27,15 @@ export function signup(username, password) {
 
         dispatch({
           type: types.SIGNUP_SUCCESS,
-          payload: json
-        })
-      }
-      )
+          payload: json,
+        });
+      })
       .catch(reason => dispatch({ type: types.SIGNUP_FAILURE, payload: reason }));
   };
 }
 
 export function login(username, password) {
-  return (dispatch,getState) => {
+  return (dispatch, getState) => {
     const { isFetching } = getState().services;
 
     if (isFetching.login) {
@@ -48,12 +46,14 @@ export function login(username, password) {
       type: types.LOGIN_REQUEST,
 
     });
-    return callApi('/login', undefined, { method: "POST" },
+    return callApi(
+      '/login', undefined, { method: 'POST' },
       {
-        username: username,
-        password: password,
-      })
-      .then(json => {
+        username,
+        password,
+      },
+    )
+      .then((json) => {
         if (!json.token) {
           throw new Error('Token has not been provided.');
         }
@@ -62,8 +62,8 @@ export function login(username, password) {
 
         dispatch({
           type: types.LOGIN_SUCCESS,
-          payload: json
-        })
+          payload: json,
+        });
       })
       .catch(reason => dispatch({ type: types.LOGIN_FAILURE, payload: reason }));
   };
@@ -71,7 +71,6 @@ export function login(username, password) {
 
 export function logout() {
   return (dispatch, getState) => {
-    
     const { isFetching } = getState().services;
 
     if (isFetching.logout) {
@@ -79,17 +78,17 @@ export function logout() {
     }
 
     dispatch({
-      type: types.LOGOUT_REQUEST
+      type: types.LOGOUT_REQUEST,
     });
 
     return callApi('/logout')
-      .then(json => {
+      .then((json) => {
         localStorage.removeItem('token');
 
         dispatch({
           type: types.LOGOUT_SUCCESS,
-          payload: json
-        })
+          payload: json,
+        });
       })
       .catch(reason => dispatch({
         type: types.LOGOUT_FAILURE,
@@ -106,10 +105,10 @@ export function recieveAuth() {
     if (!token) {
       dispatch({
         type: types.RECIEVE_AUTH_FAILURE,
-      })
+      });
     }
 
-    return callApi('/users/me', token, )
+    return callApi('/users/me', token)
       .then(json => dispatch({
         type: types.RECIEVE_AUTH_SUCCESS,
         payload: json,
@@ -118,6 +117,5 @@ export function recieveAuth() {
         type: types.RECIEVE_AUTH_FAILURE,
         payload: reason,
       }));
-
-  }
+  };
 }

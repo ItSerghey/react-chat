@@ -6,8 +6,8 @@ import Button from 'material-ui/Button';
 const styles = theme => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class LoginForm extends React.Component {
   state = {
@@ -21,23 +21,22 @@ class LoginForm extends React.Component {
     },
   }
 
-  handleInputChange =(event) =>{
+  handleInputChange =(event) => {
     event.persist();
-    const {name, value} = event.target;
+    const { name, value } = event.target;
 
-    this.setState((prevState)=>(
+    this.setState(prevState => (
       {
-      [name]:{...prevState[name],value},
-    }))
-
+        [name]: { ...prevState[name], value },
+      }));
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const { username, password } = this.state;
 
-    this.props.onSubmit( username.value, password.value);
+    this.props.onSubmit(username.value, password.value);
   }
 
   render() {

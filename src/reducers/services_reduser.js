@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import * as types from '../constants';
 
 const intialState = {
@@ -22,7 +22,7 @@ const intialState = {
     chat: null,
   },
   isConnected: false,
-}
+};
 
 
 export const isFetching = (state = intialState.isFetching, action) => {
@@ -96,7 +96,7 @@ export const isFetching = (state = intialState.isFetching, action) => {
     default:
       return state;
   }
-}
+};
 
 
 export const errors = (state = intialState.errors, action) => {
@@ -138,7 +138,7 @@ export const errors = (state = intialState.errors, action) => {
     default:
       return state;
   }
-}
+};
 
 export const isConnected = (state = intialState.isConnected, action) => {
   switch (action.type) {
@@ -150,7 +150,7 @@ export const isConnected = (state = intialState.isConnected, action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   isFetching,

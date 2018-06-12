@@ -1,28 +1,27 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography'
+import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import LoginForm from '../components/forms/LoginForm';
 import SignupForm from '../components/forms/SignupForm';
-import { Redirect } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 
 const styles = theme => ({
   paper: {
-    marginTop: 64 + theme.spacing.unit * 3,
+    marginTop: 64 + (theme.spacing.unit * 3),
     width: 500,
   },
   tabContent: {
     padding: theme.spacing.unit * 3,
-  }
-})
+  },
+});
 
 class LoginPage extends React.Component {
-
   state = {
     activeTab: 0,
   }
@@ -32,7 +31,9 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { classes, signup, login, isAuthenticated,error } = this.props;
+    const {
+      classes, signup, login, isAuthenticated, error,
+    } = this.props;
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
@@ -52,7 +53,8 @@ class LoginPage extends React.Component {
           <Grid item>
             <Paper className={classes.paper}>
               <AppBar position="static" color="default">
-                <Tabs value={activeTab}
+                <Tabs
+                  value={activeTab}
                   onChange={this.handleChange}
                   fullWidth
                 >
@@ -70,7 +72,7 @@ class LoginPage extends React.Component {
         <ErrorMessage error={error} />
       </React.Fragment>
 
-    )
+    );
   }
 }
 

@@ -1,21 +1,21 @@
-import React from "react";
-import { withStyles } from "material-ui/styles";
-import Button from "material-ui/Button";
-import AddIcon from "material-ui-icons/Add";
+import React from 'react';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
 
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = theme => ({
   AddChatButton: {
-    position: "absolute",
-    left: "auto",
+    position: 'absolute',
+    left: 'auto',
     right: theme.spacing.unit * 3,
-    bottom: theme.spacing.unit * 3 + 48 // + bottom navigation
-  }
+    bottom: (theme.spacing.unit * 3) + 48, // + bottom navigation
+  },
 });
 
 class AddChatButton extends React.Component {
@@ -27,28 +27,28 @@ class AddChatButton extends React.Component {
   state = {
     open: false,
     chatName: {
-      value: "",
-      isValid: true
-    }
+      value: '',
+      isValid: true,
+    },
   };
 
   validate = () => {
     const { chatName } = this.state;
-    const isValid = chatName.value !== "";
+    const isValid = chatName.value !== '';
 
     this.setState({
-      chatName: { ...chatName, isValid }
+      chatName: { ...chatName, isValid },
     });
 
     return isValid;
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({
       chatName: {
         value: event.target.value,
-        isValid: true
-      }
+        isValid: true,
+      },
     });
   };
 
@@ -60,7 +60,7 @@ class AddChatButton extends React.Component {
     this.setState({ open: false });
   };
 
-  handleAddChat = event => {
+  handleAddChat = (event) => {
     event.preventDefault();
 
     const { chatName } = this.state;
@@ -73,9 +73,9 @@ class AddChatButton extends React.Component {
     this.setState({
       open: false,
       chatName: {
-        value: "",
-        isValid: true
-      }
+        value: '',
+        isValid: true,
+      },
     });
   };
 

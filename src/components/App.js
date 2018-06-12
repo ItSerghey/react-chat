@@ -1,21 +1,20 @@
-import React from "react";
-import { withStyles } from 'material-ui/styles';//changed path
-import PrivateRoute from '../containers/PrivateRoute';
+import React from 'react';
 import { Provider } from 'react-redux';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';// changed path
+import PrivateRoute from '../containers/PrivateRoute';
 import configureStore from '../store';
-
-import {Router, Route, Switch, Redirect } from 'react-router-dom'
 import ChatPage from '../containers/ChatPageContainer';
 import LoginPage from '../containers/LoginPageContainer';
 import history from '../utils/history';
 
 const styles = theme => ({
   root: {
-    position: "relative",
-    display: "flex",
-    width: "100%",
-    height: "100%",
-    backgroundColor: theme.palette.background.default
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
   },
 });
 

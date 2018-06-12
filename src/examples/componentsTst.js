@@ -21,7 +21,7 @@ export class Clock extends React.Component {
    } */
 
   state = {
-    time: new Date()
+    time: new Date(),
   }
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
@@ -33,7 +33,7 @@ export class Clock extends React.Component {
 
   tick() {
     this.setState({
-      time: new Date()
+      time: new Date(),
 
     });
   }
@@ -42,13 +42,13 @@ export class Clock extends React.Component {
   }
 }
 
-//------------------------------------------------------------List----------
+// ------------------------------------------------------------List----------
 const data = [
   'item1',
   'item2',
   'item3',
   'item4',
-]
+];
 
 export const List = () => (
   <ul>
@@ -56,11 +56,10 @@ export const List = () => (
       <li key={index}>{item}</li>
     ))}
   </ul>
-)
+);
 
 
-
-//export default Welcome;
+// export default Welcome;
 
 /*
 

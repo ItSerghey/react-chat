@@ -1,24 +1,27 @@
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import ChatPage from '../Pages/ChatPage';
 import { logout } from '../actions/auth';
-import { fetchAllChats, 
-  fetchMyChats, 
-  setActiveChat, 
-  createChat, 
-  deleteChat, 
-  joinChat, 
-  leaveChat, }  from '../actions/chatManage';
-  import { 
-    sendMessage, 
-    mountChat, 
-    unmountChat, 
-    socketsConnect } from '../actions/sockets'
-  import { editUser } from '../actions/user';
+import {
+  fetchAllChats,
+  fetchMyChats,
+  setActiveChat,
+  createChat,
+  deleteChat,
+  joinChat,
+  leaveChat,
+} from '../actions/chatManage';
+import {
+  sendMessage,
+  mountChat,
+  unmountChat,
+  socketsConnect,
+} from '../actions/sockets';
+import { editUser } from '../actions/user';
 import * as fromChats from '../reducers/chats_reduser';
 import * as fromState from '../reducers';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const activeChat = fromChats.getById(state.chats, state.chats.activeId);
 
   return {
@@ -38,24 +41,24 @@ const mapStateToProps = state => {
     error: state.services.errors.chat,
     isConnected: state.services.isConnected,
   };
-}
+};
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchAllChats,
   fetchMyChats,
   setActiveChat,
   createChat,
-   logout,
-   deleteChat,
-   joinChat,
-   leaveChat,
+  logout,
+  deleteChat,
+  joinChat,
+  leaveChat,
   sendMessage,
-   editUser,
+  editUser,
   mountChat,
   unmountChat,
-  socketsConnect
+  socketsConnect,
 }, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ChatPage);
