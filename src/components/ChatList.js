@@ -14,25 +14,24 @@ const styles = () => ({
 
 const ChatList = ({
   classes, chats, activeChat, disabled,
-}) =>
-  (
-    <List className={classes.chatsList}>
-      {chats && chats.length ? (
-        chats.map(chat => (
-          <ChatListItem
-            disabled={disabled}
-            key={chat._id}
-            active={activeChat && activeChat._id === chat._id}
-            chatId={chat._id}
-            {...chat}
-          />
-        ))
-      ) : (
-        <Typography variant="subheading" className={classes.noChats}>
-          There is no chats yet...
-        </Typography>
-      )}
-    </List>
-  );
+}) => (
+  <List className={classes.chatsList}>
+    {chats && chats.length ? (
+      chats.map(chat => (
+        <ChatListItem
+          disabled={disabled}
+          key={chat._id}
+          active={activeChat && activeChat._id === chat._id}
+          chatId={chat._id}
+          {...chat}
+        />
+      ))
+    ) : (
+      <Typography variant="subheading" className={classes.noChats}>
+        There is no chats yet...
+      </Typography>
+    )}
+  </List>
+);
 
 export default withStyles(styles)(ChatList);

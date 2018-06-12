@@ -11,12 +11,7 @@ import {
   joinChat,
   leaveChat,
 } from '../actions/chatManage';
-import {
-  sendMessage,
-  mountChat,
-  unmountChat,
-  socketsConnect,
-} from '../actions/sockets';
+import { sendMessage, mountChat, unmountChat, socketsConnect } from '../actions/sockets';
 import { editUser } from '../actions/user';
 import * as fromChats from '../reducers/chats_reduser';
 import * as fromState from '../reducers';
@@ -42,21 +37,25 @@ const mapStateToProps = (state) => {
     isConnected: state.services.isConnected,
   };
 };
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchAllChats,
-  fetchMyChats,
-  setActiveChat,
-  createChat,
-  logout,
-  deleteChat,
-  joinChat,
-  leaveChat,
-  sendMessage,
-  editUser,
-  mountChat,
-  unmountChat,
-  socketsConnect,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchAllChats,
+      fetchMyChats,
+      setActiveChat,
+      createChat,
+      logout,
+      deleteChat,
+      joinChat,
+      leaveChat,
+      sendMessage,
+      editUser,
+      mountChat,
+      unmountChat,
+      socketsConnect,
+    },
+    dispatch,
+  );
 
 export default connect(
   mapStateToProps,

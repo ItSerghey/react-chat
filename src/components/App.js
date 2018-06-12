@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';// changed path
+import { withStyles } from 'material-ui/styles'; // changed path
 import PrivateRoute from '../containers/PrivateRoute';
 import configureStore from '../store';
 import ChatPage from '../containers/ChatPageContainer';
@@ -21,7 +21,7 @@ const styles = theme => ({
 const store = configureStore();
 
 const App = ({ classes }) => (
-  <Provider store={store} >
+  <Provider store={store}>
     <Router history={history}>
       <div className={classes.root}>
         <Switch>

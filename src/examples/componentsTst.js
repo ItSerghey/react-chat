@@ -1,12 +1,10 @@
-import React from 'react';
+import React from 'react'; // ctrl+shift+z
 
 /* function Welcome(props){
     return <h1>Hello {props.name}</h1>
 } */
 
-/* export const Welcome = ({name})=>(<h1>Hello {name}</h1>)  */// ctrl+shift+z
-
-export class Welcome extends React.Component {
+/* export const Welcome = ({name})=>(<h1>Hello {name}</h1>)  */ export class Welcome extends React.Component {
   render() {
     const { children } = this.props;
     return <h1>Hello, {children}!</h1>;
@@ -22,7 +20,7 @@ export class Clock extends React.Component {
 
   state = {
     time: new Date(),
-  }
+  };
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
   }
@@ -34,30 +32,17 @@ export class Clock extends React.Component {
   tick() {
     this.setState({
       time: new Date(),
-
     });
   }
   render() {
-    return (<p>{this.state.time.toLocaleTimeString()}</p>);
+    return <p>{this.state.time.toLocaleTimeString()}</p>;
   }
 }
 
 // ------------------------------------------------------------List----------
-const data = [
-  'item1',
-  'item2',
-  'item3',
-  'item4',
-];
+const data = ['item1', 'item2', 'item3', 'item4'];
 
-export const List = () => (
-  <ul>
-    {data.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
-);
-
+export const List = () => <ul>{data.map((item, index) => <li key={index}>{item}</li>)}</ul>;
 
 // export default Welcome;
 

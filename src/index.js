@@ -7,10 +7,8 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store';
 
-
 const store = configureStore();
 const rootEl = document.getElementById('root');
-
 
 const render = (Component) => {
   ReactDOM.render(
@@ -20,7 +18,6 @@ const render = (Component) => {
     rootEl,
   );
 };
-
 
 render(App);
 

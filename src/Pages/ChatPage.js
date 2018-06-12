@@ -7,13 +7,15 @@ import ErrorMessage from '../components/ErrorMessage';
 class ChatPage extends React.Component {
   componentDidMount() {
     const {
-      match, fetchAllChats, fetchMyChats, setActiveChat, socketsConnect, mountChat,
+      match,
+      fetchAllChats,
+      fetchMyChats,
+      setActiveChat,
+      socketsConnect,
+      mountChat,
     } = this.props;
 
-    Promise.all([
-      fetchAllChats(),
-      fetchMyChats(),
-    ])
+    Promise.all([fetchAllChats(), fetchMyChats()])
       .then(() => {
         socketsConnect();
       })
@@ -29,7 +31,10 @@ class ChatPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      match: { params }, setActiveChat, unmountChat, mountChat,
+      match: { params },
+      setActiveChat,
+      unmountChat,
+      mountChat,
     } = this.props;
     const { params: nextParams } = nextProps.match;
 
@@ -43,9 +48,18 @@ class ChatPage extends React.Component {
 
   render() {
     const {
-      chats, activeUser, logout, editUser,
-      createChat, joinChat, leaveChat, deleteChat,
-      sendMessage, error, messages, isConnected,
+      chats,
+      activeUser,
+      logout,
+      editUser,
+      createChat,
+      joinChat,
+      leaveChat,
+      deleteChat,
+      sendMessage,
+      error,
+      messages,
+      isConnected,
     } = this.props;
     return (
       <React.Fragment>
@@ -58,11 +72,7 @@ class ChatPage extends React.Component {
           logout={logout}
           editUser={editUser}
         />
-        <Sidebar
-          isConnected={isConnected}
-          createChat={createChat}
-          chats={chats}
-        />
+        <Sidebar isConnected={isConnected} createChat={createChat} chats={chats} />
         <Chat
           isConnected={isConnected}
           messages={messages}
@@ -76,6 +86,5 @@ class ChatPage extends React.Component {
     );
   }
 }
-
 
 export default ChatPage;

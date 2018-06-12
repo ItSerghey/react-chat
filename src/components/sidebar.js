@@ -34,27 +34,27 @@ class Sidebar extends React.Component {
   state = {
     searchValue: '',
     activeTab: 0,
-  }
+  };
 
   handleSearchChange = (event) => {
     this.setState({
       searchValue: event.target.value,
     });
-  }
+  };
 
   handleTabChange = (event, value) => {
     this.setState({
       activeTab: value,
     });
-  }
+  };
 
   filterChats = (chats) => {
     const { searchValue } = this.state;
 
-    return chats.filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
-      .sort((one, two) =>
-        (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
-  }
+    return chats
+      .filter(chat => chat.title.toLowerCase().includes(searchValue.toLowerCase()))
+      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+  };
 
   render() {
     const {
@@ -85,11 +85,7 @@ class Sidebar extends React.Component {
         />
         <AddChatButton onClick={createChat} disabled={!isConnected} />
 
-        <BottomNavigation
-          value={activeTab}
-          onChange={this.handleTabChange}
-          showLabels
-        >
+        <BottomNavigation value={activeTab} onChange={this.handleTabChange} showLabels>
           <BottomNavigationAction label="My Chats" icon={<RestoreIcon />} />
           <BottomNavigationAction label="Explore" icon={<ExploreIcon />} />
         </BottomNavigation>

@@ -19,17 +19,16 @@ class LoginForm extends React.Component {
       value: '',
       isValid: true,
     },
-  }
+  };
 
-  handleInputChange =(event) => {
+  handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
 
-    this.setState(prevState => (
-      {
-        [name]: { ...prevState[name], value },
-      }));
-  }
+    this.setState(prevState => ({
+      [name]: { ...prevState[name], value },
+    }));
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +36,7 @@ class LoginForm extends React.Component {
     const { username, password } = this.state;
 
     this.props.onSubmit(username.value, password.value);
-  }
+  };
 
   render() {
     const { classes } = this.props;

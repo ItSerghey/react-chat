@@ -1,7 +1,6 @@
 import * as types from '../constants/auth_const';
 import callApi from '../utils/call-api';
 
-
 export function signup(username, password) {
   return (dispatch, getState) => {
     const { isFetching } = getState().services;
@@ -14,10 +13,15 @@ export function signup(username, password) {
       type: types.SIGNUP_REQUEST,
     });
 
-    return callApi('/signup', undefined, { method: 'POST' }, {
-      username,
-      password,
-    })
+    return callApi(
+      '/signup',
+      undefined,
+      { method: 'POST' },
+      {
+        username,
+        password,
+      },
+    )
       .then((json) => {
         if (!json.token) {
           throw new Error('Token has not been provided.');
@@ -44,10 +48,11 @@ export function login(username, password) {
 
     dispatch({
       type: types.LOGIN_REQUEST,
-
     });
     return callApi(
-      '/login', undefined, { method: 'POST' },
+      '/login',
+      undefined,
+      { method: 'POST' },
       {
         username,
         password,
@@ -90,13 +95,13 @@ export function logout() {
           payload: json,
         });
       })
-      .catch(reason => dispatch({
-        type: types.LOGOUT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason =>
+        dispatch({
+          type: types.LOGOUT_FAILURE,
+          payload: reason,
+        }));
   };
 }
-
 
 export function recieveAuth() {
   return (dispatch, getState) => {
@@ -109,13 +114,15 @@ export function recieveAuth() {
     }
 
     return callApi('/users/me', token)
-      .then(json => dispatch({
-        type: types.RECIEVE_AUTH_SUCCESS,
-        payload: json,
-      }))
-      .catch(reason => dispatch({
-        type: types.RECIEVE_AUTH_FAILURE,
-        payload: reason,
-      }));
+      .then(json =>
+        dispatch({
+          type: types.RECIEVE_AUTH_SUCCESS,
+          payload: json,
+        }))
+      .catch(reason =>
+        dispatch({
+          type: types.RECIEVE_AUTH_FAILURE,
+          payload: reason,
+        }));
   };
 }

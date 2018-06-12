@@ -24,7 +24,6 @@ const intialState = {
   isConnected: false,
 };
 
-
 export const isFetching = (state = intialState.isFetching, action) => {
   switch (action.type) {
     case types.SIGNUP_REQUEST:
@@ -97,7 +96,6 @@ export const isFetching = (state = intialState.isFetching, action) => {
       return state;
   }
 };
-
 
 export const errors = (state = intialState.errors, action) => {
   switch (action.type) {

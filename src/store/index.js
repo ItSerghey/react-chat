@@ -5,19 +5,16 @@ import rootReducer from '../reducers';
 
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
-    return createStore(
-      rootReducer,
-      applyMiddleware(thunkMiddleware),
-    );
+    return createStore(rootReducer, applyMiddleware(thunkMiddleware));
   }
   /* eslint-disable no-underscore-dangle */
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ serialize: true }) : compose;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ serialize: true })
+    : compose;
   /* eslint-enable no-underscore-dangle */
   const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware)),
-
   );
 
   if (module.hot) {

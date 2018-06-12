@@ -7,7 +7,6 @@ import { withStyles } from 'material-ui';
 import Typography from 'material-ui/Typography';
 import Avatar from './Avatar';
 
-
 import senderName from '../utils/sender-name';
 import randomColor from '../utils/color-from';
 
@@ -51,7 +50,11 @@ const ChatMessage = ({
     return (
       <div className={classes.messageWrapper}>
         <Typography className={classes.statusMessage}>
-          <Typography variant="caption" style={{ color: randomColor(sender._id) }} className={classes.statusMessageUser}>
+          <Typography
+            variant="caption"
+            style={{ color: randomColor(sender._id) }}
+            className={classes.statusMessageUser}
+          >
             {displayedName}
           </Typography>
           {content}
@@ -63,23 +66,22 @@ const ChatMessage = ({
     );
   }
 
-  const userAvatar = (
-    <Avatar colorFrom={sender._id}>
-      {displayedName}
-    </Avatar>
-  );
+  const userAvatar = <Avatar colorFrom={sender._id}>{displayedName}</Avatar>;
 
   return (
     // eslint-disable-next-line
-    <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
+    <div
+      className={classNames(
+        classes.messageWrapper,
+        isMessageFromMe && classes.messageWrappperFromMe,
+      )}
+    >
       {!isMessageFromMe && userAvatar}
       <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
         <Typography variant="caption" style={{ color: randomColor(sender._id) }}>
           {displayedName}
         </Typography>
-        <Typography variant="body1">
-          {content}
-        </Typography>
+        <Typography variant="body1">{content}</Typography>
         <Typography variant="caption" className={classes.time}>
           {moment(createdAt).fromNow()}
         </Typography>
@@ -90,4 +92,3 @@ const ChatMessage = ({
 };
 
 export default withStyles(styles)(ChatMessage);
-

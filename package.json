@@ -10,7 +10,9 @@
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
+    "husky": "^0.14.3",
     "isomorphic-fetch": "^2.2.1",
+    "lint-staged": "^7.2.0",
     "material-ui": "^1.0.0-beta.45",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.22.2",
@@ -32,8 +34,9 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "npm run lint -- --fix"
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier-eslint --write \"**/*.{js,json}\""
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -42,7 +45,14 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
+    "prettier-eslint-cli": "^4.7.1",
     "react-app-rewired": "^1.5.2",
     "typescript-snapshots-plugin": "^1.2.0"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "npm run lint:fix", "npm run format", "git add"],
+    "**/*.json": [
+      "npm run format", "git add"]
   }
 }

@@ -24,7 +24,7 @@ const styles = theme => ({
 class LoginPage extends React.Component {
   state = {
     activeTab: 0,
-  }
+  };
 
   handleChange = (event, value) => {
     this.setState({ activeTab: value });
@@ -37,14 +37,14 @@ class LoginPage extends React.Component {
     const { activeTab } = this.state;
 
     if (isAuthenticated) {
-      return (<Redirect to="/chat" />);
+      return <Redirect to="/chat" />;
     }
     return (
       <React.Fragment>
         <AppBar>
           <Toolbar>
             <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-             YourCHAT
+              YourCHAT
             </Typography>
           </Toolbar>
         </AppBar>
@@ -53,11 +53,7 @@ class LoginPage extends React.Component {
           <Grid item>
             <Paper className={classes.paper}>
               <AppBar position="static" color="default">
-                <Tabs
-                  value={activeTab}
-                  onChange={this.handleChange}
-                  fullWidth
-                >
+                <Tabs value={activeTab} onChange={this.handleChange} fullWidth>
                   <Tab label="Login" />
                   <Tab label="Sign Up" />
                 </Tabs>
@@ -71,7 +67,6 @@ class LoginPage extends React.Component {
         </Grid>
         <ErrorMessage error={error} />
       </React.Fragment>
-
     );
   }
 }

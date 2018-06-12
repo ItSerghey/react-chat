@@ -1,4 +1,3 @@
-
 // import { createStore } from 'redux';
 
 const { createStore } = require('redux');
@@ -19,7 +18,6 @@ function counter(state = 0, action) {
   }
 }
 
-
 const store = createStore(counter);
 
 store.subscribe(() => {
@@ -29,4 +27,3 @@ store.subscribe(() => {
 store.dispatch(increment);
 store.dispatch(increment);
 store.dispatch(increment);
-

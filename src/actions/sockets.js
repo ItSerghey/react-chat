@@ -88,18 +88,22 @@ export function sendMessage(content) {
       dispatch(missingSocketConnection());
     }
 
-    socket.emit('send-message', {
-      chatId: activeId,
-      content,
-    }, () => {
-      dispatch({
-        type: types.SEND_MESSAGE,
-        payload: {
-          chatId: activeId,
-          content,
-        },
-      });
-    });
+    socket.emit(
+      'send-message',
+      {
+        chatId: activeId,
+        content,
+      },
+      () => {
+        dispatch({
+          type: types.SEND_MESSAGE,
+          payload: {
+            chatId: activeId,
+            content,
+          },
+        });
+      },
+    );
   };
 }
 

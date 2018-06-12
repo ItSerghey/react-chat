@@ -2,13 +2,11 @@
 import { combineReducers } from 'redux';
 import * as types from '../constants';
 
-
 const InitialState = {
   activeId: null,
   allIds: [],
   myIds: [],
   byIds: {},
-
 };
 
 const activeId = (state = InitialState.activeId, action) => {
@@ -64,10 +62,13 @@ const byIds = (state = InitialState.byIds, action) => {
     case types.FETCH_MY_CHATS_SUCCESS:
       return {
         ...state,
-        ...action.payload.chats.reduce((ids, chat) => ({
-          ...ids,
-          [getChatId(chat)]: chat,
-        }), {}),
+        ...action.payload.chats.reduce(
+          (ids, chat) => ({
+            ...ids,
+            [getChatId(chat)]: chat,
+          }),
+          {},
+        ),
       };
     case types.JOIN_CHAT_SUCCESS:
     case types.LEAVE_CHAT_SUCCESS:
@@ -93,7 +94,6 @@ export default combineReducers({
   allIds,
   myIds,
   byIds,
-
 });
 // eslint-disable-next-line
 export const getChatId = chat => chat._id;

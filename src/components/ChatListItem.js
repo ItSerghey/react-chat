@@ -12,20 +12,17 @@ const styles = theme => ({
 });
 const ChatListItem = ({
   classes, disabled, title, chatId, active, createdAt,
-}) =>
-  (
-    <ListItem
-      button
-      component={Link}
-      to={`/chat/${chatId}`}
-      className={active ? classes.activeItem : ''}
-      disabled={disabled}
-    >
-      <Avatar colorFrom={chatId}>
-        {title}
-      </Avatar>
-      <ListItemText primary={title} secondary={moment(createdAt).fromNow()} />
-    </ListItem>
-  );
+}) => (
+  <ListItem
+    button
+    component={Link}
+    to={`/chat/${chatId}`}
+    className={active ? classes.activeItem : ''}
+    disabled={disabled}
+  >
+    <Avatar colorFrom={chatId}>{title}</Avatar>
+    <ListItemText primary={title} secondary={moment(createdAt).fromNow()} />
+  </ListItem>
+);
 
 export default withStyles(styles)(ChatListItem);
