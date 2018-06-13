@@ -1,4 +1,5 @@
 import { ListItem, ListItemText } from 'material-ui/List';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui';
 import React from 'react';
@@ -10,6 +11,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.grey[200],
   },
 });
+
 const ChatListItem = ({
   classes, disabled, title, chatId, active, createdAt,
 }) => (
@@ -24,5 +26,18 @@ const ChatListItem = ({
     <ListItemText primary={title} secondary={moment(createdAt).fromNow()} />
   </ListItem>
 );
+
+ChatListItem.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
+  chatId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+};
+
+ChatListItem.defaultProps = {
+  active: null,
+};
 
 export default withStyles(styles)(ChatListItem);

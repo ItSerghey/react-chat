@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Paper from 'material-ui/Paper';
@@ -19,6 +20,14 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    showJoinButton: PropTypes.bool.isRequired,
+    onJoinButtonClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
   state = {
     value: '',
   };
@@ -71,4 +80,5 @@ class MessageInput extends React.Component {
     );
   }
 }
+
 export default withStyles(styles)(MessageInput);

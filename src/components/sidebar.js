@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import { withStyles } from 'material-ui/styles';
@@ -20,7 +21,8 @@ const styles = theme => ({
     position: 'absolute',
     left: 'auto',
     right: theme.spacing.unit * 3,
-    bottom: (theme.spacing.unit * 3) + 48, // + bottom navigation
+    // eslint-disable-next-line
+    bottom: theme.spacing.unit * 3 + 48, // + bottom navigation
   },
 
   drawerHeader: {
@@ -31,6 +33,17 @@ const styles = theme => ({
 });
 
 class Sidebar extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    chats: PropTypes.shape({
+      active: PropTypes.object,
+      my: PropTypes.array.isRequired,
+      all: PropTypes.array.isRequired,
+    }).isRequired,
+    createChat: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
+
   state = {
     searchValue: '',
     activeTab: 0,

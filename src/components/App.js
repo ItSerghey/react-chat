@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles'; // changed path
@@ -33,5 +34,9 @@ const App = ({ classes }) => (
     </Router>
   </Provider>
 );
+
+App.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default withStyles(styles)(App);

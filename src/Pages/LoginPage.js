@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withStyles } from 'material-ui';
 import AppBar from 'material-ui/AppBar';
@@ -13,10 +14,12 @@ import ErrorMessage from '../components/ErrorMessage';
 
 const styles = theme => ({
   paper: {
-    marginTop: 64 + (theme.spacing.unit * 3),
+    // eslint-disable-next-line
+    marginTop: 64 + theme.spacing.unit * 3,
     width: 500,
   },
   tabContent: {
+    // eslint-disable-next-line
     padding: theme.spacing.unit * 3,
   },
 });
@@ -25,6 +28,10 @@ class LoginPage extends React.Component {
   state = {
     activeTab: 0,
   };
+
+  componentDidMount() {
+    this.props.recieveAuth();
+  }
 
   handleChange = (event, value) => {
     this.setState({ activeTab: value });
@@ -70,5 +77,17 @@ class LoginPage extends React.Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  signup: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  recieveAuth: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  error: PropTypes.instanceOf(Error),
+};
+LoginPage.defaultProps = {
+  error: null,
+};
 
 export default withStyles(styles)(LoginPage);

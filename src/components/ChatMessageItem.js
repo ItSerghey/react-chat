@@ -1,5 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
 import Paper from 'material-ui/Paper';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import React from 'react';
 import classNames from 'classnames';
@@ -91,4 +92,23 @@ const ChatMessage = ({
   );
 };
 
+ChatMessage.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  content: PropTypes.string.isRequired,
+  sender: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+  }).isRequired,
+  activeUser: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
+  createdAt: PropTypes.string.isRequired,
+  statusMessage: PropTypes.bool,
+};
+
+ChatMessage.defaultProps = {
+  statusMessage: false,
+};
 export default withStyles(styles)(ChatMessage);

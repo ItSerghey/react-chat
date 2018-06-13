@@ -5,7 +5,7 @@ module.exports = {
     "browser": true
   },
   "rules": {
-    "react/prop-types": 0,
+    "react/prop-types": 1,
     "react/jsx-filename-extension": 0,
   }
 
