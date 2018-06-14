@@ -50,6 +50,9 @@
     "react-app-rewired": "^1.5.2",
     "typescript-snapshots-plugin": "^1.2.0"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
+   },
   "lint-staged": {
     "**/*.js": [
       "npm run lint:fix",

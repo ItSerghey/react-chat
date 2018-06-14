@@ -27,7 +27,7 @@ export function signup(username, password) {
           throw new Error('Token has not been provided.');
         }
 
-        localStorage.setItem('token', json.token);
+        window.localStorage.setItem('token', json.token);
 
         dispatch({
           type: types.SIGNUP_SUCCESS,
@@ -63,7 +63,7 @@ export function login(username, password) {
           throw new Error('Token has not been provided.');
         }
 
-        localStorage.setItem('token', json.token);
+        window.localStorage.setItem('token', json.token);
 
         dispatch({
           type: types.LOGIN_SUCCESS,
@@ -88,7 +88,7 @@ export function logout() {
 
     return callApi('/logout')
       .then((json) => {
-        localStorage.removeItem('token');
+        window.localStorage.removeItem('token');
 
         dispatch({
           type: types.LOGOUT_SUCCESS,

@@ -1,6 +1,6 @@
 import * as types from '../constants/auth_const';
 
-const token = localStorage.getItem('token');
+const token = window.localStorage.getItem('token');
 
 const InitialState = {
   isAuthenticated: !!token,
