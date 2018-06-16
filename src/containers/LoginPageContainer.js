@@ -1,7 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import LoginPage from '../Pages/LoginPage';
-import { signup, login } from '../actions';
+import { signup, login, recieveAuth } from '../actions';
+
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch =>
     {
       signup,
       login,
+      recieveAuth,
     },
     dispatch,
   );

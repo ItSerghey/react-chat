@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NewChatButton /> renders button 1`] = `
+<div>
+  <button
+    className="MuiButtonBase-root-49 MuiButton-root-34 MuiButton-raised-39 MuiButton-fab-44 MuiButton-raisedPrimary-40 AddChatButton-AddChatButton-33"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="button"
+  >
+    <span
+      className="MuiButton-label-35"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root-52"
+        color={undefined}
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+    <span
+      className="MuiTouchRipple-root-58"
+    />
+  </button>
+</div>
+`;
+
+exports[`<NewChatButton /> renders disabled button 1`] = `
+<div>
+  <button
+    className="MuiButtonBase-root-49 MuiButtonBase-disabled-50 MuiButton-root-34 MuiButton-raised-39 MuiButton-fab-44 MuiButton-raisedPrimary-40 MuiButton-disabled-43 AddChatButton-AddChatButton-33"
+    disabled={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="-1"
+    type="button"
+  >
+    <span
+      className="MuiButton-label-35"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root-52"
+        color={undefined}
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;

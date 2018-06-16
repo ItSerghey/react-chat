@@ -15,5 +15,4 @@ Avatar.propTypes = {
   children: PropTypes.string.isRequired,
 };
 
-
 export default Avatar;

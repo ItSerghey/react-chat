@@ -107,11 +107,15 @@ export function recieveAuth() {
   return (dispatch, getState) => {
     const { token } = getState().auth;
 
-    if (!token) {
+    /*     if (!token) {
       dispatch({
         type: types.RECIEVE_AUTH_FAILURE,
       });
-    }
+    } */
+
+    dispatch({
+      type: types.RECIEVE_AUTH_REQUEST,
+    });
 
     return callApi('/users/me', token)
       .then(json =>

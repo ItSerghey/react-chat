@@ -4,7 +4,6 @@ import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreIcon from 'material-ui-icons/MoreVert';
 
-
 class ChatMenu extends React.Component {
   state = {
     anchorEl: null,

@@ -10,7 +10,7 @@ class LocalStorage {
       // not mentioned in the spec, but we must always coerce to a string
       value: jest.fn((key, val = '') => {
         // eslint-disable-next-line
-        this[key] = {val};
+        this[key] = { val };
       }),
     });
     Object.defineProperty(this, 'removeItem', {

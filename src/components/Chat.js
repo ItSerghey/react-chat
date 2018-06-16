@@ -41,7 +41,6 @@ const Chat = ({
   </main>
 );
 
-
 Chat.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   messages: PropTypes.arrayOf(PropTypes.shape({

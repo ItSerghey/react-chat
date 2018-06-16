@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatList /> renders active 1`] = `
+<a
+  className="MuiButtonBase-root-66 MuiListItem-root-56 MuiListItem-default-59 MuiListItem-gutters-63 MuiListItem-button-64 ChatListItem-activeItem-55"
+  href="/chat/12345"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  <div
+    className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+    style={
+      Object {
+        "backgroundColor": "#ffc107",
+      }
+    }
+  >
+    MC
+  </div>
+  <div
+    className="MuiListItemText-root-72"
+  >
+    <h3
+      className="MuiTypography-root-78 MuiTypography-subheading-85 MuiListItemText-primary-75"
+    >
+      My Chat
+    </h3>
+    <p
+      className="MuiTypography-root-78 MuiTypography-body1-87 MuiTypography-colorTextSecondary-100 MuiListItemText-secondary-76"
+    >
+      2 days ago
+    </p>
+  </div>
+  <span
+    className="MuiTouchRipple-root-102"
+  />
+</a>
+`;
+
+exports[`<ChatList /> renders correctly 1`] = `
+<a
+  className="MuiButtonBase-root-66 MuiListItem-root-56 MuiListItem-default-59 MuiListItem-gutters-63 MuiListItem-button-64"
+  href="/chat/12345"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  <div
+    className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+    style={
+      Object {
+        "backgroundColor": "#ffc107",
+      }
+    }
+  >
+    MC
+  </div>
+  <div
+    className="MuiListItemText-root-72"
+  >
+    <h3
+      className="MuiTypography-root-78 MuiTypography-subheading-85 MuiListItemText-primary-75"
+    >
+      My Chat
+    </h3>
+    <p
+      className="MuiTypography-root-78 MuiTypography-body1-87 MuiTypography-colorTextSecondary-100 MuiListItemText-secondary-76"
+    >
+      2 days ago
+    </p>
+  </div>
+  <span
+    className="MuiTouchRipple-root-102"
+  />
+</a>
+`;
+
+exports[`<ChatList /> renders disabled 1`] = `
+<a
+  className="MuiButtonBase-root-66 MuiButtonBase-disabled-67 MuiListItem-root-56 MuiListItem-default-59 MuiListItem-gutters-63 MuiListItem-disabled-61 MuiListItem-button-64"
+  href="/chat/12345"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  tabIndex="-1"
+>
+  <div
+    className="MuiAvatar-root-69 MuiAvatar-colorDefault-70"
+    style={
+      Object {
+        "backgroundColor": "#ffc107",
+      }
+    }
+  >
+    MC
+  </div>
+  <div
+    className="MuiListItemText-root-72"
+  >
+    <h3
+      className="MuiTypography-root-78 MuiTypography-subheading-85 MuiListItemText-primary-75"
+    >
+      My Chat
+    </h3>
+    <p
+      className="MuiTypography-root-78 MuiTypography-body1-87 MuiTypography-colorTextSecondary-100 MuiListItemText-secondary-76"
+    >
+      2 days ago
+    </p>
+  </div>
+</a>
+`;
