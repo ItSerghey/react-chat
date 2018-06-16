@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sidebar';
 import ChatHeader from '../components/ChatHeader';
 import Chat from '../components/Chat';
 import ErrorMessage from '../components/ErrorMessage';

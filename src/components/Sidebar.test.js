@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar';
 
 jest.mock('./ChatList', () => () => 'ChatList');
 jest.mock('./AddChatButton.js', () => () => 'AddChatButton');
