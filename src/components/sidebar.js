@@ -13,7 +13,7 @@ import ChatList from './ChatList';
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
-    height: '100%',
+    // height: '100%',
     width: 320,
   },
 
