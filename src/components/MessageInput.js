@@ -1,5 +1,6 @@
-import React from "react";
-import { withStyles } from "material-ui/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
@@ -10,8 +11,8 @@ const styles = theme => ({
     left: 'auto',
     right: 0,
     bottom: 0,
-    width: `calc(100% - 304px)`,
-    padding: theme.spacing.unit * 3
+    width: 'calc(100% - 304px)',
+    padding: theme.spacing.unit * 3,
   },
   messageInput: {
     padding: theme.spacing.unit * 2,
@@ -19,15 +20,23 @@ const styles = theme => ({
 });
 
 class MessageInput extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    showJoinButton: PropTypes.bool.isRequired,
+    onJoinButtonClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+  };
+
   state = {
     value: '',
-  }
+  };
 
   handleValueChange = (event) => {
     this.setState({
       value: event.target.value,
     });
-  }
+  };
 
   handleKeyPress = (event) => {
     const { value } = this.state;
@@ -36,10 +45,12 @@ class MessageInput extends React.Component {
       this.props.sendMessage(value);
       this.setState({ value: '' });
     }
-  }
+  };
 
   render() {
-    const { classes, showJoinButton, onJoinButtonClick, disabled } = this.props;
+    const {
+      classes, showJoinButton, onJoinButtonClick, disabled,
+    } = this.props;
 
     return (
       <div className={classes.messageInputWrapper}>
@@ -55,18 +66,19 @@ class MessageInput extends React.Component {
               Join
             </Button>
           ) : (
-              <Input
-                disabled={disabled}
-                fullWidth
-                placeholder="Type your message…"
-                value={this.state.value}
-                onChange={this.handleValueChange}
-                onKeyPress={this.handleKeyPress}
-              />
-            )}
+            <Input
+              disabled={disabled}
+              fullWidth
+              placeholder="Type your message…"
+              value={this.state.value}
+              onChange={this.handleValueChange}
+              onKeyPress={this.handleKeyPress}
+            />
+          )}
         </Paper>
       </div>
     );
   }
-};
+}
+
 export default withStyles(styles)(MessageInput);

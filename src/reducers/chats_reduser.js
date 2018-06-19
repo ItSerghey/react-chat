@@ -1,12 +1,12 @@
+/* eslint no-use-before-define: 0 */
+import { combineReducers } from 'redux';
 import * as types from '../constants';
-import {combineReducers} from 'redux';
 
 const InitialState = {
-activeId:null,
-allIds:[],
-myIds:[],
-byIds:{},
-
+  activeId: null,
+  allIds: [],
+  myIds: [],
+  byIds: {},
 };
 
 const activeId = (state = InitialState.activeId, action) => {
@@ -35,16 +35,13 @@ const allIds = (state = InitialState.allIds, action) => {
       return [...state, getChatId(action.payload.chat)];
     case types.DELETE_CHAT_SUCCESS:
     case types.RECIEVE_DELETED_CHAT:
-      return state.filter(
-        chatId => chatId !== getChatId(action.payload.chat)
-      );
+      return state.filter(chatId => chatId !== getChatId(action.payload.chat));
     default:
       return state;
   }
 };
 
 const myIds = (state = InitialState.myIds, action) => {
-
   switch (action.type) {
     case types.FETCH_MY_CHATS_SUCCESS:
       return action.payload.chats.map(getChatId);
@@ -54,9 +51,7 @@ const myIds = (state = InitialState.myIds, action) => {
     case types.LEAVE_CHAT_SUCCESS:
     case types.DELETE_CHAT_SUCCESS:
     case types.RECIEVE_DELETED_CHAT:
-      return state.filter(
-        chatId => chatId !== getChatId(action.payload.chat)
-      );
+      return state.filter(chatId => chatId !== getChatId(action.payload.chat));
     default:
       return state;
   }
@@ -67,11 +62,14 @@ const byIds = (state = InitialState.byIds, action) => {
     case types.FETCH_MY_CHATS_SUCCESS:
       return {
         ...state,
-        ...action.payload.chats.reduce((ids, chat) => ({
-          ...ids,
-          [getChatId(chat)]: chat,
-        }), {}),
-      }
+        ...action.payload.chats.reduce(
+          (ids, chat) => ({
+            ...ids,
+            [getChatId(chat)]: chat,
+          }),
+          {},
+        ),
+      };
     case types.JOIN_CHAT_SUCCESS:
     case types.LEAVE_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS:
@@ -81,10 +79,11 @@ const byIds = (state = InitialState.byIds, action) => {
         [getChatId(action.payload.chat)]: action.payload.chat,
       };
     case types.DELETE_CHAT_SUCCESS:
-    case types.RECIEVE_DELETED_CHAT:
+    case types.RECIEVE_DELETED_CHAT: {
       const newState = { ...state };
       delete newState[getChatId(action.payload.chat)];
       return newState;
+    }
     default:
       return state;
   }
@@ -95,9 +94,8 @@ export default combineReducers({
   allIds,
   myIds,
   byIds,
-
-})
-
-export const getChatId = (chat) => chat._id;
+});
+// eslint-disable-next-line
+export const getChatId = chat => chat._id;
 export const getByIds = (state, ids) => ids.map(id => state.byIds[id]);
 export const getById = (state, id) => state.byIds[id];

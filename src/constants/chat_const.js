@@ -1,21 +1,21 @@
-export const FETCH_MY_CHATS_REQUEST=Symbol('chats/FETCH_MY_CHATS_REQUEST');
-export const FETCH_MY_CHATS_SUCCESS=Symbol('chats/FETCH_MY_CHATS_SUCCESS');
-export const FETCH_MY_CHATS_FAILURE=Symbol('chats/FETCH_MY_CHATS_FAILURE');
+export const FETCH_MY_CHATS_REQUEST = Symbol('chats/FETCH_MY_CHATS_REQUEST');
+export const FETCH_MY_CHATS_SUCCESS = Symbol('chats/FETCH_MY_CHATS_SUCCESS');
+export const FETCH_MY_CHATS_FAILURE = Symbol('chats/FETCH_MY_CHATS_FAILURE');
 
-export const FETCH_ALL_CHATS_REQUEST=Symbol('chats/FETCH_ALL_CHATS_REQUEST');
-export const FETCH_ALL_CHATS_SUCCESS=Symbol('chats/FETCH_ALL_CHATS_SUCCESS');
-export const FETCH_ALL_CHATS_FAILURE=Symbol('chats/FETCH_ALL_CHATS_FAILURE');
+export const FETCH_ALL_CHATS_REQUEST = Symbol('chats/FETCH_ALL_CHATS_REQUEST');
+export const FETCH_ALL_CHATS_SUCCESS = Symbol('chats/FETCH_ALL_CHATS_SUCCESS');
+export const FETCH_ALL_CHATS_FAILURE = Symbol('chats/FETCH_ALL_CHATS_FAILURE');
 
-export const FETCH_CHATINFO_SUCCESS=Symbol('chats/FETCH_CHATINFO_SUCCESS');
-export const FETCH_CHATINFO_FAILURE=Symbol('chats/FETCH_CHATINFO_FAILURE');
-export const FETCH_CHATINFO_REQUEST=Symbol('chats/FETCH_CHATINFO_REQUEST');
+export const FETCH_CHATINFO_SUCCESS = Symbol('chats/FETCH_CHATINFO_SUCCESS');
+export const FETCH_CHATINFO_FAILURE = Symbol('chats/FETCH_CHATINFO_FAILURE');
+export const FETCH_CHATINFO_REQUEST = Symbol('chats/FETCH_CHATINFO_REQUEST');
 
 export const CREATE_CHAT_REQUEST = Symbol('chats/CREATE_CHAT_REQUEST');
 export const CREATE_CHAT_SUCCESS = Symbol('chats/CREATE_CHAT_SUCCESS');
 export const CREATE_CHAT_FAILURE = Symbol('chats/CREATE_CHAT_FAILURE');
 
-export const SET_ACTIVE_CHAT=Symbol('chats/SET_ACTIVE_CHAT');
-export const UNSET_ACTIVE_CHAT=Symbol('chats/UNSET_ACTIVE_CHAT');
+export const SET_ACTIVE_CHAT = Symbol('chats/SET_ACTIVE_CHAT');
+export const UNSET_ACTIVE_CHAT = Symbol('chats/UNSET_ACTIVE_CHAT');
 
 export const ADD_CHAT_REQUEST = Symbol('chats/ADD_CHAT_REQUEST');
 export const ADD_CHAT_SUCCESS = Symbol('chats/ADD_CHAT_SUCCESS');

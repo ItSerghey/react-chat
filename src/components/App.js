@@ -1,28 +1,28 @@
-import React from "react";
-import { withStyles } from 'material-ui/styles';//changed path
-import PrivateRoute from '../containers/PrivateRoute';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles'; // changed path
+import PrivateRoute from '../containers/PrivateRoute';
 import configureStore from '../store';
-
-import {Router, Route, Switch, Redirect } from 'react-router-dom'
 import ChatPage from '../containers/ChatPageContainer';
 import LoginPage from '../containers/LoginPageContainer';
 import history from '../utils/history';
 
 const styles = theme => ({
   root: {
-    position: "relative",
-    display: "flex",
-    width: "100%",
-    height: "100%",
-    backgroundColor: theme.palette.background.default
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
   },
 });
 
 const store = configureStore();
 
 const App = ({ classes }) => (
-  <Provider store={store} >
+  <Provider store={store}>
     <Router history={history}>
       <div className={classes.root}>
         <Switch>
@@ -34,5 +34,9 @@ const App = ({ classes }) => (
     </Router>
   </Provider>
 );
+
+App.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default withStyles(styles)(App);
